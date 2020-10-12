@@ -1,0 +1,3 @@
+echarts问题1：
+在使用echarts/build/build.js自定义构建一个只含有xxxx的 echar文件时 报TypeError: uglifyPlugin is not a function错误
+依赖插件rollup-plugin-uglify版本过高（应该），重新npm install特定的版本：npm i rollup-plugin-uglify@3.0.0 –save。

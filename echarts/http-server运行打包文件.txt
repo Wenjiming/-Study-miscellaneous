@@ -1,0 +1,5 @@
+打包项目运行方式
+1.将静态文件置于服务器nginx目录下，启动nginx启动项目
+2.安装http-server,本地启动服务器
+
+https://www.cnblogs.com/mmzuo-798/p/10578396.html

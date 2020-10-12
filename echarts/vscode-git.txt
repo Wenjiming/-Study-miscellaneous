@@ -1,0 +1,18 @@
+在vscode里的git代码管理工具可以结合gitlens(它可以辨识出每行代码是什么时间、哪个人提交的)
+在vs中每次更新代码都会要输入账号密码，方便起见，可以配置一下让GIT记住密码账号。
+git config --global credential.helper store   //在Git Bash输入这个命令就可以了
+
+vscode敲stash相关命令Too many revisions specified
+看看命令终端选择的语言是什么，git命令尽量选git bash
+
+Windows PowerShell 是专为系统管理员设计的新baidu Windows 命令行 shell。Windows PowerShell 包括交互式提示和脚本zhi环境
+
+报错error: unknown switch `e‘
+关闭ide,结束所有进程
+
+
+git pull对于拉下来的修改文件自动对其进行git add /rm 及git commit 操作。
+所以拉下来的文件有那些修改，查看的方式可把它们归结于上一次提交的比较。
+
+​ git diff HEAD 显示工作目录与git仓库之间的差异，而git diff HEAD^ 则显示上一次提交之前工作目录与git仓库之间的差异。
+所以我们在git pull后，可以通过git diff HEAD^ 来查看拉下来的文件有那些具体的修改。

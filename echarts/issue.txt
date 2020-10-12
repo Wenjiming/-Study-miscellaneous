@@ -1,0 +1,5 @@
+Beautify是格式化代码的插件
+可美化JS、JSON、CSS、Sass、HTML（其他类型的文件不行）
+在文件夹根目录下创建 .jsbeautifyrc 文件
+
+.zip node 配置系统环境变量,windows msi直接安装无问题

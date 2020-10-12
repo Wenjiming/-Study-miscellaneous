@@ -1,0 +1,121 @@
+import { Vue, Component, Emit } from 'vue-property-decorator'
+ 
+@Component
+export default class YourComponent extends Vue {
+ 7.Emit(event?: string) decorator
+  baseA:  event -->true-->this.$emit(event,funParam)
+               event -->false-->this.$emit(funName,funParam)
+   count = 0
+ 
+  @Emit()
+  addToCount(n: number) {
+    this.count += n
+  }
+ 
+  @Emit('reset')
+  resetCount() {
+    this.count = 0
+  }
+ 
+  @Emit()
+  returnValue() {
+    return 10  -->baseB: return result as param
+  }
+ 
+  @Emit()
+  onInputChange(e) {
+    return e.target.value  so --> this.$emit('on-input-change',e.target.value,e)
+  }
+ 
+  @Emit()
+  promise() {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve(20)
+      }, 0)
+    })
+  }
+//计算属性
+ // 当前是否是管理员
+  get showBackCenter () {
+    return this.userInfo.isAdmin
+  }
+
+  // 系统用户名
+  get userName () {
+    return this.userInfo.username
+  }
+//
+/**
+   * 钩子函数
+   */
+  private mounted () {
+    this.initPage()
+    Bus.$on('reInit', () => {
+      this.getSelectList()
+    })
+  }
+}
+is equivalent to
+
+export default {
+  data() {
+    return {
+      count: 0,
+    }
+  },
+  methods: {
+    addToCount(n) {
+      this.count += n
+      this.$emit('add-to-count', n)
+    },
+    resetCount() {
+      this.count = 0
+      this.$emit('reset')
+    },
+    returnValue() {
+      this.$emit('return-value', 10)
+    },
+    onInputChange(e) {
+      this.$emit('on-input-change', e.target.value, e)
+    },
+    promise() {
+      const promise = new Promise((resolve) => {
+        setTimeout(() => {
+          resolve(20)
+        }, 0)
+      })
+ 
+      promise.then((value) => {
+        this.$emit('promise', value)
+      })
+    },
+  },
+}
+
+export default {
+  computed() {
+    anotherComponent: {
+      cache: false,
+      get() {
+        return this.$refs.anotherComponent as AnotherComponent
+      }
+    },
+    button: {
+      cache: false,
+      get() {
+        return this.$refs.aButton as HTMLButtonElement
+      }
+    }
+  }
+}
+
+
+//计算属性    set get
+get isShow () {
+    return this.upgradeVis
+  }
+
+  set isShow (val) {
+    this.upgradeVis = val
+  }

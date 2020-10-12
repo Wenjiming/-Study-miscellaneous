@@ -1,0 +1,18 @@
+let temObj = {}
+for(let obj of data) {
+    if(temObj[obj.name]) {
+        temObj[obj.name][obj.name].push(obj.groupIds)
+    }else {
+        temObj[obj.name] ={}
+        temObj[obj.name][obj.name]=[obj.groupIds]
+        temObj[obj.name]['name']=obj.name
+    }
+}
+console.log(Object.values(temObj))
+
+let a='qewrwerladfflsdflsdfdsfds'
+let b =a.split('')
+let obj ={}
+for(let val of b) {
+    obj[val]?obj[val]+=1:obj[val]=1
+}

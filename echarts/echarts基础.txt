@@ -1,0 +1,15 @@
+1.全局引入
+   jsdeliver+cdn
+   完全版：echarts/dist/echarts.js，体积最大，包含所有的图表和组件
+   常用版：echarts/dist/echarts.common.js，体积适中，包含常见的图表和组件
+   精简版：echarts/dist/echarts.simple.js，体积较小，仅包含最常用的图表和组件
+2.按需引入-自定义构建
+   使用 echarts/build/build.js 脚本自定义构建：比在线构建更灵活一点，并且支持多语言。
+   直接使用构建工具（如 rollup、webpack、browserify）自己构建
+   npm init
+   npm install echarts --save
+  a.使用 echarts 提供的构建脚本自定义构建
+  说明：echarts 已经提供了构建脚本 echarts/build/build.js，基于 Node.js 运行。使用方式：
+  node node_modules/echarts/build/build.js --help
+  node node_modules/echarts/build/build.js --min -i echarts.custom.js -o lib/echarts.custom.min.js
+  b.直接使用 rollup 自定义构建

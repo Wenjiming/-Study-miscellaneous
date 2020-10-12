@@ -1,0 +1,90 @@
+import { Vue, Component, Prop, Watch, Inject, Provide,PropSync，Emit } from 'vue-property-decorator'
+import { component } from 'vue/types/umd';
+1.// 有子组件
+@Component({
+  components: {},
+  directives: {}
+})
+// 无子组件
+@Component
+
+const symbol = Symbol('baz')
+
+export default class currentComponent extends Vue {
+  定义的变量等价定义在data
+  2.@Prop(options: (PropOptions | Constructor[] | Constructor) = {}) decorator
+
+  @Prop(Number) readonly propA: number | undefined
+  @Prop({ default: 'default value' }) readonly propB!: string
+  @Prop([String, Boolean]) readonly propC: string | undefined
+  
+ @Prop({ type: Boolean, default: false })
+  private upgradeVis!: boolean;
+
+  @Prop()
+  private item!: String;
+
+  3.@PropSync(propName: string, options: (PropOptions | Constructor[] | Constructor) = {}) decorator
+  @PropSync('name', { type: String }) syncedName!: string
+  //
+  export default {
+  props: {
+    name: {
+      type: String,
+    },
+  },
+  computed: {
+    syncedName: {
+      get() {
+        return this.name
+      },
+      set(value) {
+        this.$emit('update:name', value)
+      },
+    },
+  },
+}
+  //
+  5.@Watch(path: string, options: WatchOptions = {}) decorator
+
+  @Watch('child')
+  onChildChanged (val: string, oldVal: string) { } // handler
+
+  @Watch('person', { immediate: true, deep: true })
+  onPersonChanged () { }
+
+  6.@Provide(key ?: string | symbol) 
+  / @Inject(options?: { from?: InjectKey, default?: any } | InjectKey) decorator
+  
+   @Inject() readonly foo!: string
+   @Inject('bar') readonly bar!: string
+   @Inject({ from: 'optional', default: 'default' }) readonly optional!: string
+   @Inject(symbol) readonly baz!: string
+ 
+   @Provide() foo = 'foo'
+   @Provide('bar') baz = 'bar'
+
+ //const symbol = Symbol('baz')
+ 
+  export const MyComponent = Vue.extend({
+   inject: {
+    foo: 'foo',
+    bar: 'bar',
+    optional: { from: 'optional', default: 'default' },
+    baz: symbol,
+  },
+  data() {
+    return {
+      foo: 'foo',
+      baz: 'bar',
+    }
+  },
+  provide() {
+    return {
+      foo: this.foo,
+      bar: this.baz,
+    }
+  }
+ //
+
+}

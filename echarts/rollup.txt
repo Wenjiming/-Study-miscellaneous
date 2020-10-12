@@ -1,0 +1,6 @@
+1.rollup.js
+rollup.js是一个模块打包工具，可以帮助你从一个入口文件开始，将所有使用到的模块文件都打包到一个最终的发布文件中（极其适合构建一个工具库，这也是我选择用rollup来打包的原因）
+rollup.js有两个重要的特性，其中一个就是它使用ES6的模块标准，这意味着你可以直接使用和而不需要引入babel（当然，在现在的项目中，babel可以说是必用的工具了）
+rollup.js的另一个重要特性叫做'tree-shaking'，这个特性可以帮助你将无用代码（即没有使用到的代码）从最终的生成文件中删去。基于ES6模块的静态分析的，只有export而没有import的变量是不会被打包到最终代码中的
+https://segmentfault.com/a/1190000010628352
+https://www.rollupjs.com/guide/introduction/#%E6%A6%82%E8%BF%B0overview

@@ -1,0 +1,19 @@
+1.package.json和package-lock.json区别
+package.json只记录通过npm install方式安装的模块信息，而这些模块所依赖的其他子模块的信息不会记录。
+package-lock.json文件锁定所有模块的版本号，包括主模块和所有依赖子模块
+
+npm install的时候，node从package.json文件读取模块名称，从package-lock.json文件中获取版本号，然后进行下载或者更新。
+
+package-lock.json文件锁定版本号，执行npm install的时候，node不会自动更新package.json文件中的模块，必须用npm install packagename（自动更新小版本号）或者npm install packagename@x.x.x（指定版本号）来进行安装才会更新，package-lock.json文件中的版本号也会随着更新。
+2.npm 中 --save 与 --save-dev 的区别
+四种安装方式，webpack为例
+npm install webpack
+npm install webpack --save
+安装在当前目录下，写入 package.json 的 dependencies 节点中，可通过 npm install 重新安装。
+npm install webpack --save-dev
+安装在当前目录下，写入 package.json 的  devDependencies 节点中，可通过 npm install 重新安装
+
+dependencies 与 devDependencies 的区别是，后者是开发时依赖的模块包，生产环境不需要。比如 安装的 babel（将 es6 转换成 es5 的工具），打包之后的代码就是 es5 代码，所以不需要此依赖模块。
+
+npm install webpack -g
+安装在全局目录下，不会写入 package.json 的任何节点中，执行 npm install 命令也不会重新安装。

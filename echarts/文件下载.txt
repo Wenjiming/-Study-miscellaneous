@@ -1,0 +1,60 @@
+上传图片方式
+上传图片方式一：传统html控件，设置form属性为multipart/form-data(兼容ie6,ie7)
+<form action="" mehotd="post" enctype="multipart/form-data">
+ <input type="file"/>
+ <input type="submit"/>
+</form>
+form表单上传
+1.form表单上传，method必须是post
+2.form表单的enctype必须是multipart/form-data
+enctype属性规定在发送到服务器之前应该如何对表单数据进行编码。默认编码："application/x-www-form-urlencoded"
+             即html表单如何打包数据文件是由enctype这个属性决定的
+enctype取值有以下几种
+application/x-www-form-urlencoded:表单内容按url规则编码
+multipart/form-data:文件上传时使用
+text/plain
+方式二：jquery-ajax上传
+ajax和FormData可实现页面无刷新的文件上传，主要用到ajax和XMLHttpRequest Level2的formData接口
+通过FormData对象可更灵活方便的发送表单数据，因为可独立于表单使用。如果你把表单编码类型设置为multipart/form-data,则通过FormData传输的数据格式和表单通过submit输出的数据格式相同
+<form>
+ <input type="file" name="file" id="file">
+</form>
+$("#file").on("change",function() {
+    var formData= new FormData()
+     formData.append("file",$("#file")[0].files[0]
+    $.ajax({
+            url:"",
+            type:"",
+           data:formData,
+            success: function(res){}
+})
+})
+方式三 ：使用data:uri,将base64编码从浏览器端post到服务器端，然后利用base64解码即可
+网页图片src和css背景图的url后面跟了一大串字符，这是Data URI
+目的：将小的数据，直接嵌入到网页中，从而不用再从外部文件载入
+data uri好处：节省了一个http请求 坏处：浏览器不会缓存这种现象
+为什么base64编码图片可以直接在浏览器解析显示？
+因为现代浏览器为包括Base64在内各种编码的图像信息提供了很好的支持。所以data: URI的格式能把Base64或其他数据内嵌在image标签的属性或者CSS中。
+
+为什么我们平常用的比较少呢？
+因为这种方式图像的大小会增加1/3。因此，这种内嵌的方法适合对小的图形元素，比如图标、圆角等进行处理，而从http请求此时，对大的照片、图片（量少而大）则不应该使用Base64编码以免影响下载速度；而且浏览器还不会对图片进行缓存。
+
+
+data URI基本的格式如下： 
+data:[<mime type>][;charset=<charset>][;base64],<encoded data> 
+character set(字符集），如果指定是的数据格式是图片时，字符集将不再使用
+data:是URI的协议头,表明其资源是一个data URI
+MIME type，表示数据呈现的格式，对于PNG的图片，其格式是：image/png，如果没有指定，默认的格式是：text/plain
+下一部分，将表明其数据的编码方式，我们可以不必使用base64编码格式，如果那样，我们将使用标准的URL编码方式（形如%XX%XX%XX的格式）
+这个encoded data部分，可能包含空格，但是无关紧要
+
+1.文件下载--文件在服务器上适合
+<a href=""></a>,增加download属性，有该属性点击链接时浏览器就不再打开链接指向的文件，而是改为下载
+download为文件名，如果不设置则会使用链接的名字作为文件名
+2.浏览器端js生成的内容，想让浏览器下载
+URL.createObjectURL通常都是用来创建图片的DataURI用来显示图片，这里用来下载文件，让浏览器来帮我们设定好文件类型。
+https://www.cnblogs.com/xieshuxin/p/6731608.html
+
+
+下载
+https://www.cnblogs.com/zypblogs/p/11255061.html
